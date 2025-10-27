@@ -4,6 +4,7 @@ import asyncio
 import contextlib
 import os
 import selectors
+import shlex
 import subprocess
 import sys
 import time
@@ -30,6 +31,8 @@ if sys.version_info >= (3, 12):
     from typing import override
 else:
     from typing_extensions import override
+
+from ._openfoam import wrap_openfoam_command
 
 CompletedProcess = subprocess.CompletedProcess
 
@@ -72,10 +75,17 @@ def run_sync(
     stderr: int | TextIOBase = STDOUT,
     process_stdout: Callable[[str], None] = lambda _: None,
 ) -> CompletedProcess[str]:
+    # Wrap OpenFOAM commands with appropriate prefix if needed
+    wrapped_cmd = wrap_openfoam_command(cmd)
+
+    # Convert back to sequence if it was wrapped as a string
+    if isinstance(wrapped_cmd, str):
+        wrapped_cmd = shlex.split(wrapped_cmd)
+
     # Set up log file monitoring
     with LogFileMonitor(case, process_stdout) as log_monitor:
         with subprocess.Popen(
-            cmd,
+            wrapped_cmd,
             cwd=case,
             env=_env(case),
             stdout=PIPE,
@@ -128,13 +138,13 @@ def run_sync(
     if check and proc.returncode != 0:
         raise CalledProcessError(
             returncode=proc.returncode,
-            cmd=cmd,
+            cmd=wrapped_cmd,
             output=output.getvalue() if output is not None else None,
             stderr=error.getvalue(),
         )
 
     return CompletedProcess(
-        cmd,
+        wrapped_cmd,
         returncode=proc.returncode,
         stdout=output.getvalue() if output is not None else None,
         stderr=error.getvalue(),
@@ -150,13 +160,20 @@ async def run_async(
     stderr: int | TextIOBase = STDOUT,
     process_stdout: Callable[[str], None] = lambda _: None,
 ) -> CompletedProcess[str]:
+    # Wrap OpenFOAM commands with appropriate prefix if needed
+    wrapped_cmd = wrap_openfoam_command(cmd)
+
+    # Convert back to sequence if it was wrapped as a string
+    if isinstance(wrapped_cmd, str):
+        wrapped_cmd = shlex.split(wrapped_cmd)
+
     # Set up log file monitoring
     async with AsyncLogFileMonitor(case, process_stdout) as log_monitor:
         monitor_task = log_monitor.start_background_monitoring()
 
         try:
             proc = await asyncio.create_subprocess_exec(
-                *cmd,
+                *wrapped_cmd,
                 cwd=case,
                 env=_env(case),
                 stdout=PIPE,
@@ -202,13 +219,13 @@ async def run_async(
             if check and proc.returncode != 0:
                 raise CalledProcessError(
                     returncode=proc.returncode,
-                    cmd=cmd,
+                    cmd=wrapped_cmd,
                     output=output.getvalue() if output is not None else None,
                     stderr=error.getvalue(),
                 )
 
             return CompletedProcess(
-                cmd,
+                wrapped_cmd,
                 returncode=proc.returncode,
                 stdout=output.getvalue() if output is not None else None,
                 stderr=error.getvalue(),
