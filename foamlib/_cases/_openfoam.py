@@ -170,8 +170,36 @@ def should_wrap_command(cmd: str | os.PathLike[str]) -> bool:
     Returns:
         True if the command should be wrapped, False otherwise.
     """
-    cmd_name = Path(cmd).name if isinstance(cmd, os.PathLike) else str(cmd)
-    return cmd_name in OPENFOAM_COMMANDS
+    cmd_path = Path(cmd) if isinstance(cmd, os.PathLike) else Path(str(cmd))
+    cmd_name = cmd_path.name
+
+    # Check if it's a known OpenFOAM command
+    if cmd_name in OPENFOAM_COMMANDS:
+        return True
+
+    # Check if it's an OpenFOAM-related script that needs environment
+    # This includes Allrun, Allclean, and other scripts that source OpenFOAM environment
+    if (cmd_name in {"Allrun", "Allclean", "Allrun-parallel", "run", "clean", "run-parallel"}
+        and cmd_path.exists() and not is_in_openfoam_environment()):
+        # Check if the script contains OpenFOAM environment references
+        try:
+            with cmd_path.open("r", encoding="utf-8", errors="ignore") as f:
+                content = f.read(1000)  # Read first 1000 chars to check
+                # Look for OpenFOAM environment variables or commands
+                openfoam_indicators = [
+                    "WM_PROJECT_DIR",
+                    "FOAM_",
+                    "RunFunctions",
+                    "runApplication",
+                    "getApplication",
+                ]
+                if any(indicator in content for indicator in openfoam_indicators):
+                    return True
+        except (OSError, UnicodeDecodeError):
+            # If we can't read the file, assume it doesn't need wrapping
+            pass
+
+    return False
 
 
 def wrap_openfoam_command(

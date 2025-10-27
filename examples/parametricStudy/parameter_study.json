@@ -1,8 +1,8 @@
 {
   "cases": [
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/coarse_height_02",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/coarse_height_02",
       "key_value_pairs": [
         {
           "instruction": {
@@ -71,8 +71,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/coarse_height_03",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/coarse_height_03",
       "key_value_pairs": [
         {
           "instruction": {
@@ -141,8 +141,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/coarse_height_04",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/coarse_height_04",
       "key_value_pairs": [
         {
           "instruction": {
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/mid_height_02",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/mid_height_02",
       "key_value_pairs": [
         {
           "instruction": {
@@ -281,8 +281,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/mid_height_03",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/mid_height_03",
       "key_value_pairs": [
         {
           "instruction": {
@@ -351,8 +351,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/mid_height_04",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/mid_height_04",
       "key_value_pairs": [
         {
           "instruction": {
@@ -421,8 +421,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/fine_height_02",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/fine_height_02",
       "key_value_pairs": [
         {
           "instruction": {
@@ -491,8 +491,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/fine_height_03",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/fine_height_03",
       "key_value_pairs": [
         {
           "instruction": {
@@ -561,8 +561,8 @@
       ]
     },
     {
-      "template_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/damBreak",
-      "output_case": "/home/henning/libsAndApps/foamlib/example/parametricStudy/Cases/fine_height_04",
+      "template_case": "/home/ian/dev/foamlib/examples/parametricStudy/damBreak",
+      "output_case": "/home/ian/dev/foamlib/examples/parametricStudy/Cases/fine_height_04",
       "key_value_pairs": [
         {
           "instruction": {
